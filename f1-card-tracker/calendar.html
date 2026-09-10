@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Calendar</title>
+    <meta name="description" content="Full 2026 Formula One race calendar." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="calendar-page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">F1</div>
+          <div>
+            <p class="eyebrow">Motorsport Hub</p>
+            <h1>Race Calendar</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-pill" data-page="index.html">Dashboard</button>
+          <button class="nav-pill" data-page="../index.html">Photography</button>
+          <button class="nav-pill" data-page="standings.html">Standings</button>
+          <button class="nav-pill" data-page="collection.html">Collection</button>
+          <button class="nav-pill active" data-page="calendar.html">Calendar</button>
+          <button id="authActionBtn" class="nav-pill">Login</button>
+          <button id="logoutBtn" class="nav-pill danger" hidden>Logout</button>
+        </nav>
+      </header>
+
+      <section class="panel calendar-hero">
+        <div class="panel-header-row">
+          <div>
+            <p class="section-kicker">Season</p>
+            <h2>2026 F1 Calendar</h2>
+          </div>
+          <button class="secondary-btn" onclick="window.location.href='index.html'">Back to dashboard</button>
+        </div>
+        <p id="calendarSummary">Loading the full race calendar…</p>
+      </section>
+
+      <section id="calendarList" class="calendar-list" aria-live="polite"></section>
+    </main>
+
+    <button id="backToTop" class="floating-back-top" type="button">Back to top</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

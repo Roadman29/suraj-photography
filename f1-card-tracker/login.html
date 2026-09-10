@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Card Tracker | Login</title>
+    <meta name="description" content="Login to your F1 card tracker account." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <div class="auth-topbar">
+        <a href="../index.html" class="secondary-btn back-to-site">Back to website</a>
+      </div>
+      <section class="auth-card">
+        <aside class="auth-panel auth-brand">
+          <div class="brand-mark">F1</div>
+          <div>
+            <p class="eyebrow">Motorsport Hub</p>
+            <h1>Track your collection.</h1>
+          </div>
+          <p>
+            Sign in to save your owned race cards, keep your collection personal, and stay on top of the season.
+          </p>
+        </aside>
+
+        <div class="auth-panel">
+          <div class="auth-form-stack">
+            <div>
+              <p class="section-kicker">Welcome back</p>
+              <h2>Login</h2>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+              <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" type="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input id="loginPassword" type="password" placeholder="Enter your password" required />
+              </div>
+
+              <button class="auth-submit" type="submit">Log in</button>
+              <p id="loginMessage" class="auth-message" aria-live="polite"></p>
+            </form>
+
+            <div class="auth-switch">
+              <span>No account yet?</span>
+              <a href="register.html">Create one</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

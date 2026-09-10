@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Card Tracker</title>
+    <meta name="description" content="Track your F1 card collection and standings." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">F1</div>
+          <div>
+            <p class="eyebrow">Motorsport Hub</p>
+            <h1>Card Tracker</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-pill active" data-page="index.html">Dashboard</button>
+          <button class="nav-pill" data-page="../index.html">Photography</button>
+          <button class="nav-pill" data-page="standings.html">Standings</button>
+          <button class="nav-pill" data-page="collection.html">Collection</button>
+          <button class="nav-pill" data-page="calendar.html">Calendar</button>
+          <button id="authActionBtn" class="nav-pill">Login</button>
+          <button id="logoutBtn" class="nav-pill danger" hidden>Logout</button>
+        </nav>
+      </header>
+
+      <section class="hero panel">
+        <div class="hero-copy">
+          <span class="badge">2026 championship</span>
+          <h2>Race harder.<span>Collect smarter.</span></h2>
+          <p>
+            Track every podium finish, chase elite race cards, and build a collection worthy of a championship run.
+          </p>
+          <div class="cta-row">
+            <button class="primary-btn" data-page="collection.html">View collection</button>
+            <button class="secondary-btn" data-page="standings.html">Track standings</button>
+          </div>
+        </div>
+
+        <aside class="race-panel">
+          <div class="race-panel-main">
+            <div class="panel-head">
+              <span>Next race</span>
+              <span class="live-pill">On track</span>
+            </div>
+
+            <div class="next-race">
+              <div>
+                <h3 id="nextRaceName">Loading…</h3>
+                <p id="nextRaceLocation">Loading venue…</p>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <span>Race day</span>
+              <strong id="nextRaceDate">--</strong>
+            </div>
+            <div class="info-row">
+              <span>Location</span>
+              <strong id="nextRaceCountry">--</strong>
+            </div>
+            <div class="info-row">
+              <span>Focus</span>
+              <strong class="accent" id="nextRaceFocus">Race weekend</strong>
+            </div>
+          </div>
+
+          <div class="race-schedule-panel" aria-label="Schedule in Eastern Standard Time">
+            <div class="schedule-header">
+              <span>Session times</span>
+              <strong>EST</strong>
+            </div>
+            <div class="schedule-list">
+              <div class="session-row">
+                <span>Practice 1</span>
+                <strong>10:30 AM</strong>
+              </div>
+              <div class="session-row">
+                <span>Practice 2</span>
+                <strong>1:30 PM</strong>
+              </div>
+              <div class="session-row">
+                <span>Practice 3</span>
+                <strong>10:00 AM</strong>
+              </div>
+              <div class="session-row">
+                <span>Qualifying</span>
+                <strong>1:00 PM</strong>
+              </div>
+              <div class="session-row session-row-highlight">
+                <span>Race</span>
+                <strong>3:00 PM</strong>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card stat-card-link" data-page="market.html" tabindex="0" role="button" aria-label="Open the F1 market">
+          <div class="bar red"></div>
+          <p>Market</p>
+          <strong>Buy & sell</strong>
+        </article>
+        <article class="stat-card">
+          <div class="bar orange"></div>
+          <p>Race wins</p>
+          <strong>12</strong>
+        </article>
+        <article class="stat-card">
+          <div class="bar blue"></div>
+          <p>Podiums</p>
+          <strong>18</strong>
+        </article>
+        <article class="stat-card">
+          <div class="bar green"></div>
+          <p>Collection</p>
+          <strong>84%</strong>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel cards-panel">
+          <div class="panel-header">
+            <div>
+              <p class="section-kicker">Featured</p>
+              <h3>My race cards</h3>
+            </div>
+
+            <label class="search-box">
+              <span>⌕</span>
+              <input id="searchInput" type="text" placeholder="Search driver, team, circuit..." />
+            </label>
+          </div>
+
+          <div id="filters" class="filters"></div>
+
+          <button id="customCardButton" class="secondary-btn custom-card-trigger" type="button">Add custom card</button>
+
+          <div id="collectionSummary" class="collection-summary" aria-live="polite">
+            <div>
+              <p class="summary-label">Collection</p>
+              <strong id="collectionCount">0 / 0 owned</strong>
+            </div>
+            <div class="summary-bar">
+              <span id="collectionProgress"></span>
+            </div>
+          </div>
+
+          <div id="cardsGrid" class="cards-grid"></div>
+        </div>
+
+        <aside class="panel standings-panel">
+          <div class="panel-header compact">
+            <div>
+              <p class="section-kicker">Standings</p>
+              <h3>Top 5</h3>
+            </div>
+            <button class="tiny-btn" type="button" data-page="standings.html">Full</button>
+          </div>
+
+          <div id="standingsList" class="standings-list"></div>
+        </aside>
+      </section>
+    </main>
+
+    <div id="customCardModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card custom-card-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-badge">Custom</span>
+            <h4>Add a card</h4>
+          </div>
+          <button type="button" class="close-btn" data-close-custom-card>Close</button>
+        </div>
+
+        <form id="customCardForm" class="modal-body custom-card-form">
+          <div class="form-group">
+            <label for="customCardTitle">Card title</label>
+            <input id="customCardTitle" type="text" placeholder="e.g. 2025 Bahrain GP" required />
+          </div>
+
+          <div class="form-group">
+            <label for="customCardDriver">Driver</label>
+            <input id="customCardDriver" type="text" placeholder="Driver name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="customCardTeam">Team</label>
+            <input id="customCardTeam" type="text" placeholder="Team name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="customCardCircuit">Circuit</label>
+            <input id="customCardCircuit" type="text" placeholder="Circuit name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="customCardValue">Market value</label>
+            <input id="customCardValue" type="text" placeholder="e.g. 850 or $850" required />
+          </div>
+
+          <div class="form-group">
+            <label for="customCardRarity">Rarity %</label>
+            <input id="customCardRarity" type="number" min="1" max="100" value="50" required />
+          </div>
+
+          <div class="form-group">
+            <label for="customCardDescription">Description</label>
+            <textarea id="customCardDescription" rows="4" placeholder="Describe the card or moment it represents."></textarea>
+          </div>
+
+          <button class="auth-submit" type="submit">Add to collection</button>
+          <p id="customCardMessage" class="auth-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <div id="detailModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <div id="modalHeader" class="modal-header">
+          <div>
+            <span id="modalBadge" class="modal-badge"></span>
+            <h4 id="modalTitle"></h4>
+          </div>
+          <button id="closeModal" class="close-btn">Close</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="meta-row">
+            <span>Driver</span>
+            <strong id="modalDriver"></strong>
+          </div>
+          <div class="meta-row">
+            <span>Team</span>
+            <strong id="modalTeam"></strong>
+          </div>
+          <div class="meta-row">
+            <span>Circuit</span>
+            <strong id="modalCircuit"></strong>
+          </div>
+
+          <div class="rarity-box">
+            <div class="rarity-labels">
+              <span>Rarity</span>
+              <strong id="modalRarity"></strong>
+            </div>
+            <div class="rarity-bar">
+              <span id="rarityFill"></span>
+            </div>
+          </div>
+
+          <p id="modalSummary" class="summary-text"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

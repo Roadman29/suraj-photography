@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 Market</title>
+    <meta name="description" content="Browse F1 cards for sale from collectors and traders." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell collection-page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-mark">F1</div>
+          <div>
+            <p class="eyebrow">Motorsport Hub</p>
+            <h1>Market</h1>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-pill" data-page="index.html">Dashboard</button>
+          <button class="nav-pill" data-page="../index.html">Photography</button>
+          <button class="nav-pill" data-page="standings.html">Standings</button>
+          <button class="nav-pill" data-page="collection.html">Collection</button>
+          <button class="nav-pill" data-page="calendar.html">Calendar</button>
+          <button id="authActionBtn" class="nav-pill">Login</button>
+          <button id="logoutBtn" class="nav-pill danger" hidden>Logout</button>
+        </nav>
+      </header>
+
+      <section class="panel collection-hero">
+        <div class="panel-header-row">
+          <div>
+            <p class="section-kicker">Marketplace</p>
+            <h2>F1 cards for sale</h2>
+          </div>
+          <a class="secondary-btn" href="index.html">Back to dashboard</a>
+        </div>
+
+        <div class="collection-summary-grid">
+          <article class="summary-stat">
+            <span>Live listings</span>
+            <strong>4 cards</strong>
+          </article>
+          <article class="summary-stat">
+            <span>Avg. ask</span>
+            <strong>$1,332</strong>
+          </article>
+        </div>
+      </section>
+
+      <section id="marketList" class="market-list"></section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
