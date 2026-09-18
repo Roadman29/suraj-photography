@@ -46,7 +46,14 @@ if (!lightbox || !lightboxImg || !closeBtn) {
       .map((item) => item.trim())
       .filter(Boolean);
 
-    const imageFiles = Array.from({ length: count }, (_, index) => `${folder}/photo-${String(index + 1).padStart(2, '0')}.jpg`);
+    const customImages = (gallery.getAttribute('data-images') || '')
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+    const imageFiles = customImages.length
+      ? customImages
+      : Array.from({ length: count }, (_, index) => `${folder}/photo-${String(index + 1).padStart(2, '0')}.jpg`);
 
     gallery.innerHTML = '';
 
