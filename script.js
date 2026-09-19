@@ -63,10 +63,8 @@ if (!lightbox || !lightboxImg || !closeBtn) {
 
       if (gallery.classList.contains('gallery-editorial')) {
         if (index === 0) article.classList.add('hero');
-        else if (index === 1) article.classList.add('tall');
-        else if (index === 2) article.classList.add('feature');
-        else if (index === 5) article.classList.add('tall');
-        else if (index === 7) article.classList.add('feature');
+        else if ([1, 4, 7, 10].includes(index)) article.classList.add('tall');
+        else if ([2, 5, 8, 11].includes(index)) article.classList.add('feature');
       } else {
         if (index === 0) article.classList.add('large');
         if (index === 4) article.classList.add('wide');
