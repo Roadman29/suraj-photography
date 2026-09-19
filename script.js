@@ -57,14 +57,22 @@ if (!lightbox || !lightboxImg || !closeBtn) {
 
     gallery.innerHTML = '';
 
+    if (gallery.classList.contains('gallery-editorial') && imageFiles.length <= 10) {
+      gallery.classList.add('gallery-editorial-compact');
+    }
+
     imageFiles.forEach((src, index) => {
       const article = document.createElement('article');
       article.className = 'gallery-card';
 
       if (gallery.classList.contains('gallery-editorial')) {
-        if (index === 0) article.classList.add('hero');
-        else if ([1, 4, 7, 10].includes(index)) article.classList.add('tall');
-        else if ([2, 5, 8, 11].includes(index)) article.classList.add('feature');
+        if (gallery.classList.contains('gallery-editorial-compact')) {
+          if (index === 0) article.classList.add('hero');
+        } else {
+          if (index === 0) article.classList.add('hero');
+          else if ([1, 4, 7, 10].includes(index)) article.classList.add('tall');
+          else if ([2, 5, 8, 11].includes(index)) article.classList.add('feature');
+        }
       } else {
         if (index === 0) article.classList.add('large');
         if (index === 4) article.classList.add('wide');
