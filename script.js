@@ -20,7 +20,7 @@ document.addEventListener('dragstart', (e) => {
 const lightbox = document.querySelector('.lightbox');
 const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
 const closeBtn = lightbox ? lightbox.querySelector('.lightbox-close') : null;
-const galleryCacheVersion = '20260920';
+const galleryCacheVersion = '20260920-photo06-update';
 
 function withCacheBust(src) {
   if (!src) return src;
