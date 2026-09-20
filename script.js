@@ -20,6 +20,12 @@ document.addEventListener('dragstart', (e) => {
 const lightbox = document.querySelector('.lightbox');
 const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
 const closeBtn = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+const galleryCacheVersion = '20260920';
+
+function withCacheBust(src) {
+  if (!src) return src;
+  return src.includes('?') ? `${src}&v=${galleryCacheVersion}` : `${src}?v=${galleryCacheVersion}`;
+}
 
 if (!lightbox || !lightboxImg || !closeBtn) {
   console.warn('No portfolio lightbox found on this page; gallery interactions were skipped.');
@@ -69,7 +75,7 @@ if (!lightbox || !lightboxImg || !closeBtn) {
       }
 
       const img = document.createElement('img');
-      img.src = src;
+      img.src = withCacheBust(src);
       img.alt = `${label} image ${index + 1}`;
       img.loading = 'lazy';
 
@@ -122,7 +128,7 @@ if (!lightbox || !lightboxImg || !closeBtn) {
       card.className = 'product-card';
 
       const img = document.createElement('img');
-      img.src = src;
+      img.src = withCacheBust(src);
       img.alt = (captions[index] || 'F1 card') + ' image';
       img.loading = 'lazy';
 
